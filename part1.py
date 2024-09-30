@@ -8,6 +8,7 @@ data=pd.read_csv("laptop.csv")
 clean_dataset=data.drop_duplicates()
 st.dataframe(clean_dataset.sample(10))
 
-st.write("##Step 2 - ")
+st.write(f"##Data Shape: {clean_dataset.shape}")
+st.write(f"##Data Size: {clean_dataset.size}")
 
 #CHANGES
