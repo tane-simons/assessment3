@@ -1,8 +1,5 @@
-#import pandas as pd
-import csv
-with open("laptop.csv",'r') as file:
-    csvreader=csv.reader(file)
-    for row in csvreader:
-        print(row)
-#pd.read_csv("laptop.csv")
-
+import pandas as pd
+csv=pd.read_csv("laptop.csv")
+print(csv)
+noduplicate=csv.drop_duplicates()
+print(noduplicate)
