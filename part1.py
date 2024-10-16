@@ -3,6 +3,13 @@ import streamlit as st #what we're using to display all the info
 import matplotlib.pyplot as plt #for the graphs
 import io #only used for the temp storage section of displaying .info() in streamlit
 from scipy.stats import zscore, f_oneway #used for outliers and analysis of variance
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.svm import SVR
+from sklearn.metrics import r2_score
 
 st.write("# Assessment 3 - Laptop Dataset")
 
@@ -120,3 +127,27 @@ converted_df=converted_df.drop('Brand',axis=1) #gets rid of the categorical bran
 st.dataframe(converted_df.head())
 
 st.write("## Step 12 - Splitting training and testing data")
+train,test=train_test_split(num_only_dataset,test_size=0.5) #splits the dataset into train and test
+st.write("Sample of test data")
+st.write(test.sample(5))
+st.write("Sample of training data")
+st.write(train.sample(5)) #just samples of data to ensure they're there
+
+x=num_only_dataset.drop('Price',axis=1) #this is the features dataset (without price)
+y=num_only_dataset['Price'] #this is the target dataset (only price)
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.5) #splits these new datasets in half again into testing and training
+
+st.write("## Step 12 - The Models")
+#this will be a dictionary of the regression models
+models = {"Linear Regression":LinearRegression(),"Decision Tree Regressor":DecisionTreeRegressor(),"Random Forest Regressor":RandomForestRegressor(),"K-Nearest Neighbour Regressor":KNeighborsRegressor(),"SVM Regressor":SVR()}
+for name,model in models.items(): #loop sover the dictionary, getting the name and the model
+    model.fit(xtrain,ytrain) #model trained using x and y training data
+    prediction=model.predict(xtest) #makes predictions for the xtest set
+    r2=r2_score(ytest,prediction) #gets the r2 value of the ytest set and the prediction, testing the correlation
+    st.write(f"### {name}")
+    st.write(f"{name}'s r2 value: {r2:.5f}")
+    st.write(f"{name}'s predictions per column (Speed, RAM, Storage, Screen, Weight): {model.predict(xtest)[:5]}") #outputs predictions (of the 5 cols)
+
+st.write("## Step 14 - Selection of Model")
+st.write("The linear regression model appeared to produce the best r2 value, indicating a very strong correlation between its prediction and the actual data")
