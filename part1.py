@@ -1,3 +1,10 @@
+'''
+*******************************
+Author:
+u3253279 Group_Undergraduate_2 Assessment_3_Steps_1-14 18/10/2024
+Programming:
+*******************************
+'''
 import pandas as pd #used for the dfs
 import streamlit as st #what we're using to display all the info
 import matplotlib.pyplot as plt #for the graphs
