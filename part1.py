@@ -151,3 +151,7 @@ for name,model in models.items(): #loop sover the dictionary, getting the name a
 
 st.write("## Step 14 - Selection of Model")
 st.write("The linear regression model appeared to produce the best r2 value, indicating a very strong correlation between its prediction and the actual data")
+
+st.write('## Step 15 - Final Model')
+st.write("To interact with the model, navigate to the github repo: https://github.com/tane-simons/assessment3 and run model.py")
+st.write("Dependancies include: pandas, streamlit, scikit-learn, scipy.stats")
