@@ -17,17 +17,19 @@ xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.5) #splits these new 
 model=LinearRegression()
 model.fit(xtrain,ytrain) #model trained using x and y training data
 
+#streamlit interface
 st.title("Laptop Price Prediction")
 st.write("Fill in each field and click 'predict' to predict the price of the laptop")
 
-Processor_Speed=st.number_input("Processor Speed (GHz)",min_value=0,max_value=7)
+#inputs
+Processor_Speed=st.number_input("Processor Speed (GHz)",min_value=0.0,max_value=7.0)
 Ram_Size=st.number_input("RAM Size (GB)",min_value=0,max_value=128)
 Storage_Capacity=st.number_input("Storage (GB)",min_value=0,max_value=8000)
 Screen_Size=st.number_input("Screen Size (In)",min_value=0,max_value=20)
-Weight=st.number_input("Weight (kg)",min_value=0,max_value=5)
+Weight=st.number_input("Weight (kg)",min_value=0.0,max_value=5.0)
 
 if st.button("Predict"):
-    inputted=pd.DataFrame([[Processor_Speed,Ram_Size,Storage_Capacity,Screen_Size,Weight]],columns=['Processor_Speed','Ram_Size','Storage_Capacity','Screen_Size','Weight'])
+    inputted=pd.DataFrame([[Processor_Speed,Ram_Size,Storage_Capacity,Screen_Size,Weight]],columns=['Processor_Speed','Ram_Size','Storage_Capacity','Screen_Size','Weight']) #dataframe with the inputs
     predicted=model.predict(inputted) #make prediction
     st.write(f"The predicted price for the laptop is: ${predicted[0]:.2f}")
     
