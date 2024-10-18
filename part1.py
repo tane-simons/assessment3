@@ -26,7 +26,7 @@ st.dataframe(clean_dataset.dtypes, use_container_width=True) #table of teh datat
 st.write(f"### Correlations:") #brief look at the correlatons of each compared to price. will be explored further later on
 corr1=clean_dataset['Processor_Speed'].corr(clean_dataset['Price'])
 st.write(f"Processor: {corr1}")
-corr2=clean_dataset['RAM_Size'].corr(clean_dataset['Price'])
+corr2=clean_dataset['Ram_Size'].corr(clean_dataset['Price'])
 st.write(f"RAM: {corr2}")
 corr3=clean_dataset['Storage_Capacity'].corr(clean_dataset['Price'])
 st.write(f"Storage: {corr3}")
@@ -138,7 +138,7 @@ y=num_only_dataset['Price'] #this is the target dataset (only price)
 
 xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.5) #splits these new datasets in half again into testing and training
 
-st.write("## Step 12 - The Models")
+st.write("## Step 13 - The Models")
 #this will be a dictionary of the regression models
 models = {"Linear Regression":LinearRegression(),"Decision Tree Regressor":DecisionTreeRegressor(),"Random Forest Regressor":RandomForestRegressor(),"K-Nearest Neighbour Regressor":KNeighborsRegressor(),"SVM Regressor":SVR()}
 for name,model in models.items(): #loop sover the dictionary, getting the name and the model
