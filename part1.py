@@ -74,6 +74,7 @@ num_only_dataset=clean_dataset.drop(columns=["Brand"]) #dataset without the cate
 
 st.write("## Step 5 - Visual Exploratory Data Analysis")
 for column in num_only_dataset.columns: #loop that displays a histogram of each number only column
+    plt.clf()
     plt.hist(num_only_dataset[column], bins=50) 
     plt.title(f"Histogram of {column}")
     plt.xlabel(column)
